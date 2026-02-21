@@ -6,7 +6,6 @@
     <title>Document</title>
 
     <!--Tailwind css -->
-    
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 
     <!-- Font Awesome -->
@@ -28,22 +27,22 @@
 
     <!-- Header section -->
     <header class="space-y-5 mt-15 mb-8 mx-auto">
-        <h1 class="text-[#002c5cFF] text-3xl font-bold text-center">Job Application Tracker</h1>
+        <h1 class="text-[#002c5cFF] text-3xl font-bold text-center md:text-left">Job Application Tracker</h1>
         <div class="grid md:flex gap-4 w-full justify-center md:justify-between mx-auto">
 
             <div class="bg-white rounded-lg border-[f1f2f4] p-5 shadow-md w-88">
                 <h4 class="text-[#323b49FF] text-[14px] font-medium">Total</h4>
-                <p class="text-2xl font-bold">8</p>
+                <p id="totalCount" class="text-2xl font-bold">8</p>
             </div>
 
             <div class="bg-white rounded-lg border-[f1f2f4] p-5 shadow-md w-88">
                 <h4 class="text-[#10b981FF] text-[14px] font-medium">Interview</h4>
-                <p class="text-2xl font-bold">8</p>
+                <p id="interviewCount" class="text-2xl font-bold">8</p>
             </div>
 
             <div class="bg-white rounded-lg border-[f1f2f4] p-5 shadow-md w-88">
                 <h4 class="text-[#ef4444FF] text-[14px] font-medium">Rejected</h4>
-                <p class="text-2xl font-bold">8</p>
+                <p id="rejectedCount" class="text-2xl font-bold">8</p>
             </div>
         </div>
     </header>
@@ -55,23 +54,23 @@
 
 
     <!-- Hero section -->
-     <section class="space-y-6 grid justify-center md:justify-start md:ml-[3%] lg:ml-4">
+     <section id="filterSection" class="space-y-6 grid justify-center md:justify-start md:ml-[3%] lg:ml-4">
         <h3 class="text-[#002c5cFF] text-xl font-semibold">Available Jobs</h3>
 
         <div class="flex gap-2">
-            <button class="text-white bg-blue-500 cursor-pointer rounded-md py-2.5 px-8 text-xl font-semibold w-20 hover:bg-blue-600 hover:scale-95 duration-200 transition-all">All</button>
+            <button id="allFilterButton" class="text-white bg-blue-500 cursor-pointer rounded-md py-2.5 px-8 text-xl font-semibold w-20 hover:bg-blue-600 hover:scale-95 duration-200 transition-all">All</button>
 
-            <button class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Interview</button>
+            <button id="interviewFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Interview</button>
 
-            <button class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Rejected</button>
+            <button id="rejectedFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Rejected</button>
         </div>
      </section>
 
      <!-- All Cards here -->
-     <main>
+     <main id="jobsContainer">
      
      <!-- Card Section 1-->
-      <section class="space-y-4">
+      <section class="space-y-4 job-card">
 
 
         <div class="bg-white my-4 border-[f1f2f4] rounded-lg p-6 flex justify-between items-end md:items-start">
@@ -108,7 +107,7 @@
 
 
      <!-- Card Section 2-->
-      <section class="space-y-4">
+      <section class="space-y-4 job-card">
 
 
         <div class="bg-white my-4 border-[f1f2f4] rounded-lg p-6 flex justify-between items-end md:items-start">
@@ -145,7 +144,7 @@
 
 
      <!-- Card Section 3-->
-      <section class="space-y-4">
+      <section class="space-y-4 job-card">
 
 
         <div class="bg-white my-4 border-[f1f2f4] rounded-lg p-6 flex justify-between items-end md:items-start">
@@ -182,7 +181,7 @@
 
 
      <!-- Card Section 4-->
-      <section class="space-y-4">
+      <section class="space-y-4 job-card">
 
 
         <div class="bg-white my-4 border-[f1f2f4] rounded-lg p-6 flex justify-between items-end md:items-start">
@@ -219,7 +218,7 @@
       
 
      <!-- Card Section 5-->
-      <section class="space-y-4">
+      <section class="space-y-4 job-card">
 
 
         <div class="bg-white my-4 border-[f1f2f4] rounded-lg p-6 flex justify-between items-end md:items-start">
@@ -256,7 +255,7 @@
       
 
      <!-- Card Section 6-->
-      <section class="space-y-4">
+      <section class="space-y-4 job-card">
 
 
         <div class="bg-white my-4 border-[f1f2f4] rounded-lg p-6 flex justify-between items-end md:items-start">
@@ -293,7 +292,7 @@
       
 
      <!-- Card Section 7-->
-      <section class="space-y-4">
+      <section class="space-y-4 job-card">
 
 
         <div class="bg-white my-4 border-[f1f2f4] rounded-lg p-6 flex justify-between items-end md:items-start">
@@ -330,7 +329,7 @@
       
 
      <!-- Card Section 8-->
-      <section class="space-y-4">
+      <section class="space-y-4 job-card">
 
 
         <div class="bg-white my-4 border-[f1f2f4] rounded-lg p-6 flex justify-between items-end md:items-start">
@@ -369,5 +368,32 @@
 
       
       </main> 
+
+
+      <!-- Available Jobs -->
+            <section id="emptyStateSection" class="space-y-6 w-full">
+        <h3 class="text-[#002c5cFF] text-xl font-semibold">Available Jobs</h3>
+
+        <div class="flex gap-2">
+            <button id="interviewFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">All</button>
+
+            <button id="interviewFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Interview</button>
+
+            <button id="rejectedFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Rejected</button>
+        </div>
+
+        <div class="rounded-2 bg-white border border-[#f1f2f4FF] py-28 w-full">
+            <img src="jobs.png" alt="" class="mx-auto">
+            <h3 class="text-[#002c5cFF] text-center text-2xl font-semibold mt-5 mb-1">No jobs available</h3>
+            <p class="text-[#64748bFF] text-center">Check back soon for new job opportunities</p>
+        </div>
+     </section>
+
+
+      <script src="script.js"></script>
 </body>
 </html>
+
+
+
+
