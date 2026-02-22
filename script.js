@@ -95,19 +95,6 @@ function applyFilter() {
       activeFilter === "all" ? `${cards.length} Jobs` : `${visibleCount} of ${cards.length}`;
   }
 
-  if (emptyStateTitle && emptyStateText) {
-    if (activeFilter === "interview") {
-      emptyStateTitle.innerText = "No Interview Jobs";
-      emptyStateText.innerText = "No jobs are marked as interview right now.";
-    } else if (activeFilter === "rejected") {
-      emptyStateTitle.innerText = "No Rejected Jobs";
-      emptyStateText.innerText = "No jobs are marked as rejected right now.";
-    } else {
-      emptyStateTitle.innerText = "No Jobs Found";
-      emptyStateText.innerText = "Please choose another filter or update a job status.";
-    }
-  }
-
   if (emptyStateSection) {
     emptyStateSection.classList.toggle("hidden", visibleCount > 0);
   }
