@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -54,8 +54,13 @@
 
 
     <!-- Hero section -->
-     <section id="filterSection" class="space-y-6 grid justify-center md:justify-start md:ml-[3%] lg:ml-4">
-        <h3 class="text-[#002c5cFF] text-xl font-semibold">Available Jobs</h3>
+     <section id="filterSection" class="space-y-6 md:ml-[3%] lg:ml-4">
+        <div class="flex items-center justify-between gap-3">
+            <h3 class="text-[#002c5cFF] text-xl font-semibold">Available Jobs</h3>
+            <p id="tabJobCount" class="text-[#64748bFF] text-sm font-medium ml-auto whitespace-nowrap">
+              0 of 0
+            </p>
+        </div>
 
         <div class="flex gap-2">
             <button id="allFilterButton" class="text-white bg-blue-500 cursor-pointer rounded-md py-2.5 px-8 text-xl font-semibold w-20 hover:bg-blue-600 hover:scale-95 duration-200 transition-all">All</button>
@@ -363,32 +368,36 @@
 
       </section>
 
-
-
-
       
       </main> 
 
+     <!-- Available Jobs Section--> 
+      <section id="emptyStateSection" class="space-y-6 w-full">
 
-      <!-- Available Jobs -->
-            <section id="emptyStateSection" class="space-y-6 w-full">
-        <h3 class="text-[#002c5cFF] text-xl font-semibold">Available Jobs</h3>
+         <h3 class="text-[#002c5cFF] text-xl font-semibold">Available Jobs</h3>
 
         <div class="flex gap-2">
+
             <button id="interviewFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">All</button>
 
             <button id="interviewFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Interview</button>
-
+            
             <button id="rejectedFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Rejected</button>
-        </div>
-
+         </div>
+         
+         
         <div class="rounded-2 bg-white border border-[#f1f2f4FF] py-28 w-full">
+            
             <img src="jobs.png" alt="" class="mx-auto">
-            <h3 class="text-[#002c5cFF] text-center text-2xl font-semibold mt-5 mb-1">No jobs available</h3>
-            <p class="text-[#64748bFF] text-center">Check back soon for new job opportunities</p>
-        </div>
-     </section>
 
+            <h3 class="text-[#002c5cFF] text-center text-2xl font-semibold mt-5 mb-1">No jobs available</h3> 
+            
+            <p class="text-[#64748bFF] text-center">Check back soon for new job opportunities</p> 
+        
+        </div> 
+
+    </section>
+         
 
       <script src="script.js"></script>
 </body>

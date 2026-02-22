@@ -1,4 +1,4 @@
-let activeFilter = "all";
+﻿let activeFilter = "all";
 
 const jobsContainer = document.getElementById("jobsContainer");
 const emptyStateSection = document.getElementById("emptyStateSection");
@@ -6,6 +6,9 @@ const emptyStateSection = document.getElementById("emptyStateSection");
 const totalCountText = document.getElementById("totalCount");
 const interviewCountText = document.getElementById("interviewCount");
 const rejectedCountText = document.getElementById("rejectedCount");
+const tabJobCountText = document.getElementById("tabJobCount");
+const emptyStateTitle = document.getElementById("emptyStateTitle");
+const emptyStateText = document.getElementById("emptyStateText");
 
 const allFilterButton = document.getElementById("allFilterButton");
 const interviewFilterButton = document.getElementById("interviewFilterButton");
@@ -87,7 +90,27 @@ function applyFilter() {
     if (shouldShow) visibleCount += 1;
   });
 
-  emptyStateSection.classList.toggle("hidden", visibleCount > 0);
+  if (tabJobCountText) {
+    tabJobCountText.innerText =
+      activeFilter === "all" ? `${cards.length} Jobs` : `${visibleCount} of ${cards.length}`;
+  }
+
+  if (emptyStateTitle && emptyStateText) {
+    if (activeFilter === "interview") {
+      emptyStateTitle.innerText = "No Interview Jobs";
+      emptyStateText.innerText = "No jobs are marked as interview right now.";
+    } else if (activeFilter === "rejected") {
+      emptyStateTitle.innerText = "No Rejected Jobs";
+      emptyStateText.innerText = "No jobs are marked as rejected right now.";
+    } else {
+      emptyStateTitle.innerText = "No Jobs Found";
+      emptyStateText.innerText = "Please choose another filter or update a job status.";
+    }
+  }
+
+  if (emptyStateSection) {
+    emptyStateSection.classList.toggle("hidden", visibleCount > 0);
+  }
 }
 
 allFilterButton.addEventListener("click", () => {
