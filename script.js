@@ -7,8 +7,6 @@ const totalCountText = document.getElementById("totalCount");
 const interviewCountText = document.getElementById("interviewCount");
 const rejectedCountText = document.getElementById("rejectedCount");
 const tabJobCountText = document.getElementById("tabJobCount");
-const emptyStateTitle = document.getElementById("emptyStateTitle");
-const emptyStateText = document.getElementById("emptyStateText");
 
 const allFilterButton = document.getElementById("allFilterButton");
 const interviewFilterButton = document.getElementById("interviewFilterButton");
