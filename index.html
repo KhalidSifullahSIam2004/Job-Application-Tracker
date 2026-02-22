@@ -58,7 +58,7 @@
         <div class="flex items-center justify-between gap-3">
             <h3 class="text-[#002c5cFF] text-xl font-semibold">Available Jobs</h3>
             <p id="tabJobCount" class="text-[#64748bFF] text-sm font-medium ml-auto whitespace-nowrap">
-              0 of 0
+              0 Jobs
             </p>
         </div>
 
@@ -372,27 +372,14 @@
       </main> 
 
      <!-- Available Jobs Section--> 
-      <section id="emptyStateSection" class="space-y-6 w-full">
-
-         <h3 class="text-[#002c5cFF] text-xl font-semibold">Available Jobs</h3>
-
-        <div class="flex gap-2">
-
-            <button id="interviewFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">All</button>
-
-            <button id="interviewFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Interview</button>
-            
-            <button id="rejectedFilterButton" class=" text-[#64748bFF] bg-white cursor-pointer border border-[#f1f2f4FF] rounded-md py-2.5 px-8 text-xs font-medium hover:bg-black/50 hover:text-white hover:scale-95 duration-200 transition-all">Rejected</button>
-         </div>
-         
-         
+      <section id="emptyStateSection" class="hidden space-y-6 w-full">
         <div class="rounded-2 bg-white border border-[#f1f2f4FF] py-28 w-full">
             
             <img src="jobs.png" alt="" class="mx-auto">
 
-            <h3 class="text-[#002c5cFF] text-center text-2xl font-semibold mt-5 mb-1">No jobs available</h3> 
+            <h3 id="emptyStateTitle" class="text-[#002c5cFF] text-center text-2xl font-semibold mt-5 mb-1">No jobs available</h3> 
             
-            <p class="text-[#64748bFF] text-center">Check back soon for new job opportunities</p> 
+            <p id="emptyStateText" class="text-[#64748bFF] text-center">Check back soon for new job opportunities</p> 
         
         </div> 
 
