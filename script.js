@@ -41,9 +41,10 @@ function updateCounts() {
     const status = getCardStatus(card);
 
     if (status === "interview") {
-      interview = interview + 1;
-    } else if (status === "rejected") {
-      rejected = rejected + 1;
+      interview+;
+    } 
+    else if (status === "rejected") {
+      rejected++;
     }
   }
 
