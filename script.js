@@ -1,217 +1,217 @@
-﻿let filter = "all";
+﻿let filterType = "all";
 
-const jobsArea = document.getElementById("jobsContainer");
-const noJobMessage = document.getElementById("emptyStateSection");
-const totalNumber = document.getElementById("totalCount");
-const interviewNumber = document.getElementById("interviewCount");
-const rejectedNumber = document.getElementById("rejectedCount");
-const tabSmallText = document.getElementById("tabJobCount");
-const allBtn = document.getElementById("allFilterButton");
-const interviewBtn = document.getElementById("interviewFilterButton");
-const rejectedBtn = document.getElementById("rejectedFilterButton");
+const jobsDiv = document.getElementById("jobsContainer");
+const noJobsDiv = document.getElementById("emptyStateSection");
+const totalJobs = document.getElementById("totalCount");
+const interviewJobs = document.getElementById("interviewCount");
+const rejectedJobs = document.getElementById("rejectedCount");
+const smallTabText = document.getElementById("tabJobCount");
 
+const allButton = document.getElementById("allFilterButton");
+const interviewButton = document.getElementById("interviewFilterButton");
+const rejectedButton = document.getElementById("rejectedFilterButton");
 
-function getCards() {
-    const allCards = document.querySelectorAll(".job-card");
-    const cardArray = [];
-    for (let i = 0; i < allCards.length; i++) {
-        cardArray.push(allCards[i]);
+function getJobCards() {
+    let cards = document.querySelectorAll(".job-card");
+    let cardList = [];
+    for (let i = 0; i < cards.length; i++) {
+        cardList.push(cards[i]);
     }
-    return cardArray;
+    return cardList;
 }
 
-function getBadge(card) {
-    const badge = card.querySelector(".space-y-2 button");
+function getCardBadge(card) {
+    let badge = card.querySelector(".space-y-2 button");
     return badge;
 }
 
-function checkStatus(card) {
-    const badge = getBadge(card)
+function getCardStatus(card) {
+    let badge = getCardBadge(card);
     if (badge == null) {
         return "not applied";
     }
-    let txt = badge.innerText;
-    txt = txt.trim();
-    txt = txt.toLowerCase();
-    return txt;
+    let statusText = badge.innerText;
+    statusText = statusText.trim();
+    statusText = statusText.toLowerCase();
+    return statusText;
 }
 
-function updateCounts() {
-    const cards = getCards();
-    const totalCards = cards.length;
-    let interviewCount = 0;
-    let rejectedCount = 0;
+function updateAllNumbers() {
+    let allCards = getJobCards();
+    let total = allCards.length;
+    let interview = 0;
+    let rejected = 0;
 
-    for (let i = 0; i < cards.length; i++) {
-        const st = checkStatus(cards[i]);
-        if (st == "interview") {
-            interviewCount = interviewCount + 1;
+    for (let i = 0; i < allCards.length; i++) {
+        let status = getCardStatus(allCards[i]);
+        if (status == "interview") {
+            interview = interview + 1;
         }
-        if (st == "rejected") {
-            rejectedCount = rejectedCount + 1;
+        if (status == "rejected") {
+            rejected = rejected + 1;
         }
     }
 
-    totalNumber.innerText = totalCards;
-    interviewNumber.innerText = interviewCount;
-    rejectedNumber.innerText = rejectedCount;
+    totalJobs.innerText = total;
+    interviewJobs.innerText = interview;
+    rejectedJobs.innerText = rejected;
 }
 
-function setActiveBtn() {
-    
-    allBtn.classList.remove("bg-blue-500");
-    allBtn.classList.remove("text-white");
-    allBtn.classList.add("bg-white");
-    allBtn.classList.add("text-[#64748bFF]");
+function makeButtonActive() {
+    allButton.classList.remove("bg-blue-500");
+    allButton.classList.remove("text-white");
+    allButton.classList.add("bg-white");
+    allButton.classList.add("text-[#64748b]");
 
-    interviewBtn.classList.remove("bg-blue-500");
-    interviewBtn.classList.remove("text-white");
-    interviewBtn.classList.add("bg-white");
-    interviewBtn.classList.add("text-[#64748bFF]");
+    interviewButton.classList.remove("bg-blue-500");
+    interviewButton.classList.remove("text-white");
+    interviewButton.classList.add("bg-white");
+    interviewButton.classList.add("text-[#64748b]");
 
-    rejectedBtn.classList.remove("bg-blue-500");
-    rejectedBtn.classList.remove("text-white");
-    rejectedBtn.classList.add("bg-white");
-    rejectedBtn.classList.add("text-[#64748bFF]");
+    rejectedButton.classList.remove("bg-blue-500");
+    rejectedButton.classList.remove("text-white");
+    rejectedButton.classList.add("bg-white");
+    rejectedButton.classList.add("text-[#64748b]");
 
-    if (filter == "all") {
-        allBtn.classList.add("bg-blue-500");
-        allBtn.classList.add("text-white");
-        allBtn.classList.remove("bg-white");
-        allBtn.classList.remove("text-[#64748bFF]");
+    if (filterType == "all") {
+        allButton.classList.add("bg-blue-500");
+        allButton.classList.add("text-white");
+        allButton.classList.remove("bg-white");
+        allButton.classList.remove("text-[#64748b]");
     }
 
-    if (filter == "interview") {
-        interviewBtn.classList.add("bg-blue-500");
-        interviewBtn.classList.add("text-white");
-        interviewBtn.classList.remove("bg-white");
-        interviewBtn.classList.remove("text-[#64748bFF]");
+    if (filterType == "interview") {
+        interviewButton.classList.add("bg-blue-500");
+        interviewButton.classList.add("text-white");
+        interviewButton.classList.remove("bg-white");
+        interviewButton.classList.remove("text-[#64748b]");
     }
 
-    if (filter == "rejected") {
-        rejectedBtn.classList.add("bg-blue-500");
-        rejectedBtn.classList.add("text-white");
-        rejectedBtn.classList.remove("bg-white");
-        rejectedBtn.classList.remove("text-[#64748bFF]");
+    if (filterType == "rejected") {
+        rejectedButton.classList.add("bg-blue-500");
+        rejectedButton.classList.add("text-white");
+        rejectedButton.classList.remove("bg-white");
+        rejectedButton.classList.remove("text-[#64748b]");
     }
 }
 
-function changeBadge(card, newStatus) {
-    const badge = getBadge(card);
-    if (badge == null) return
+function changeCardBadge(card, newText) {
+    let badge = getCardBadge(card);
+    if (badge == null) {
+        return;
+    }
 
-    badge.innerText = newStatus;
+    badge.innerText = newText;
 
-    badge.classList.remove("bg-[#eef4ffFF]");
-    badge.classList.remove("text-font-[#002c5cFF]");
+    badge.classList.remove("bg-[#eef4ff]");
+    badge.classList.remove("text-[#002c5c]");
     badge.classList.remove("bg-[#ecfdf5]");
-    badge.classList.remove("text-[#10b981FF]");
+    badge.classList.remove("text-[#10b981]");
     badge.classList.remove("bg-[#fef2f2]");
-    badge.classList.remove("text-[#ef4444FF]");
+    badge.classList.remove("text-[#ef4444]");
 
-    if (newStatus == "INTERVIEW") {
+    if (newText == "INTERVIEW") {
         badge.classList.add("bg-[#ecfdf5]");
-        badge.classList.add("text-[#10b981FF]");
-    } else if (newStatus == "REJECTED") {
+        badge.classList.add("text-[#10b981]");
+    } else if (newText == "REJECTED") {
         badge.classList.add("bg-[#fef2f2]");
-        badge.classList.add("text-[#ef4444FF]");
+        badge.classList.add("text-[#ef4444]");
     } else {
-        badge.classList.add("bg-[#eef4ffFF]");
-        badge.classList.add("text-font-[#002c5cFF]");
+        badge.classList.add("bg-[#eef4ff]");
+        badge.classList.add("text-[#002c5c]");
     }
 }
 
-function showFilteredCards() {
-    const cards = getCards();
-    let visible = 0;
+function showCardsByFilter() {
+    let cards = getJobCards();
+    let howManyShow = 0;
 
     for (let i = 0; i < cards.length; i++) {
-        const card = cards[i];
-        const st = checkStatus(card);
+        let card = cards[i];
+        let status = getCardStatus(card);
 
-        if (filter == "all") {
+        if (filterType == "all") {
             card.classList.remove("hidden");
-            visible++;
-        } else if (filter == "interview") {
-            if (st == "interview") {
+            howManyShow = howManyShow + 1;
+        } 
+        else if (filterType == "interview") {
+            if (status == "interview") {
                 card.classList.remove("hidden");
-                visible++;
+                howManyShow = howManyShow + 1;
             } else {
                 card.classList.add("hidden");
             }
-        } else if (filter == "rejected") {
-            if (st == "rejected") {
+        } 
+        else if (filterType == "rejected") {
+            if (status == "rejected") {
                 card.classList.remove("hidden");
-                visible++;
+                howManyShow = howManyShow + 1;
             } else {
                 card.classList.add("hidden");
             }
         }
     }
 
-    if (tabSmallText) {
-        if (filter == "all") {
-            tabSmallText.innerText = cards.length + " Jobs";
+    if (smallTabText != null) {
+        if (filterType == "all") {
+            smallTabText.innerText = cards.length + " Jobs";
         } else {
-            tabSmallText.innerText = visible + " of " + cards.length;
+            smallTabText.innerText = howManyShow + " of " + cards.length;
         }
     }
 
-    if (noJobMessage) {
-        if (visible == 0) {
-            noJobMessage.classList.remove("hidden");
+    if (noJobsDiv != null) {
+        if (howManyShow == 0) {
+            noJobsDiv.classList.remove("hidden");
         } else {
-            noJobMessage.classList.add("hidden");
+            noJobsDiv.classList.add("hidden");
         }
     }
 }
 
+allButton.addEventListener("click", function() {
+    filterType = "all";
+    makeButtonActive();
+    showCardsByFilter();
+});
 
-allBtn.addEventListener("click", function () {
-    filter = "all";
-    setActiveBtn();
-    showFilteredCards();
-})
+interviewButton.addEventListener("click", function() {
+    filterType = "interview";
+    makeButtonActive();
+    showCardsByFilter();
+});
 
-interviewBtn.addEventListener("click", function () {
-    filter = "interview";
-    setActiveBtn();
-    showFilteredCards();
-})
+rejectedButton.addEventListener("click", function() {
+    filterType = "rejected";
+    makeButtonActive();
+    showCardsByFilter();
+});
 
-rejectedBtn.addEventListener("click", function () {
-    filter = "rejected";
-    setActiveBtn();
-    showFilteredCards();
-})
-
-
-jobsArea.addEventListener("click", function (e) {
-    const card = e.target.closest(".job-card");
-    if (card == null) return
-
-    let btnText = "";
-    if (e.target.innerText) {
-        btnText = e.target.innerText.trim().toUpperCase();;
+jobsDiv.addEventListener("click", function(event) {
+    let clickedCard = event.target.closest(".job-card");
+    if (clickedCard == null) {
+        return;
     }
 
-    if (btnText == "INTERVIEW") {
-        changeBadge(card, "INTERVIEW");
-    } else if (btnText == "REJECTED") {
-        changeBadge(card, "REJECTED");
-    } else if (e.target.classList.contains("fa-trash-can")) {
-        card.remove();
-    } else if (e.target.closest(".fa-trash-can")) {
-        card.remove();
+    let buttonText = "";
+    if (event.target.innerText) {
+        buttonText = event.target.innerText.trim().toUpperCase();
+    }
+
+    if (buttonText == "INTERVIEW") {
+        changeCardBadge(clickedCard, "INTERVIEW");
+    } else if (buttonText == "REJECTED") {
+        changeCardBadge(clickedCard, "REJECTED");
+    } else if (event.target.classList.contains("fa-trash-can") || event.target.closest(".fa-trash-can")) {
+        clickedCard.remove();
     } else {
         return;
     }
 
-    updateCounts();
-    showFilteredCards();
-})
+    updateAllNumbers();
+    showCardsByFilter();
+});
 
-
-updateCounts()
-setActiveBtn()
-showFilteredCards()
+updateAllNumbers();
+makeButtonActive();
+showCardsByFilter();
