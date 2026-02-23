@@ -20,9 +20,7 @@ function updateCounts() {
   let interview = 0;
   let rejected = 0;
 
-  let i = 0;
-  while (i < cards.length) {
-    const card = cards[i];
+  for (const card of cards) {
     let status = "";
     const statusElement = card.querySelector(".space-y-2 button");
     
@@ -36,8 +34,6 @@ function updateCounts() {
     if (status === "rejected") {
       rejected = rejected + 1;
     }
-
-    i = i + 1;
   }
 
   totalCount.innerText = cards.length;
@@ -72,10 +68,8 @@ function activateButton() {
 function showFiltered() {
   const cards = getCards();
   let shown = 0;
-  let i = 0;
 
-  while (i < cards.length) {
-    const card = cards[i];
+  for (const card of cards) {
     let status = "";
     const statusElement = card.querySelector(".space-y-2 button");
     
@@ -90,8 +84,6 @@ function showFiltered() {
     else {
       card.classList.add("hidden");
     }
-
-    i = i + 1;
   }
 
   if (filterType === "all") {
