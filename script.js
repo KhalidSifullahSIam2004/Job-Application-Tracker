@@ -12,7 +12,24 @@ const interviewButton = document.getElementById("interviewFilterButton");
 const rejectedButton = document.getElementById("rejectedFilterButton");
 
 function getCards() {
-  return [...document.querySelectorAll(".job-card")];
+  const nodeList = document.querySelectorAll(".job-card");
+  const cards = [];
+
+  for (const card of nodeList) {
+    cards.push(card);
+  }
+
+  return cards;
+}
+
+function getCardStatus(card) {
+  const statusButton = card.querySelector(".space-y-2 button");
+
+  if (!statusButton) {
+    return "";
+  }
+
+  return statusButton.innerText.toLowerCase().trim();
 }
 
 function updateCounts() {
@@ -21,17 +38,11 @@ function updateCounts() {
   let rejected = 0;
 
   for (const card of cards) {
-    let status = "";
-    const statusElement = card.querySelector(".space-y-2 button");
-    
-    if (statusElement) {
-      status = statusElement.innerText.toLowerCase().trim();
-    }
+    const status = getCardStatus(card);
 
     if (status === "interview") {
       interview = interview + 1;
-    }
-    if (status === "rejected") {
+    } else if (status === "rejected") {
       rejected = rejected + 1;
     }
   }
@@ -41,27 +52,29 @@ function updateCounts() {
   rejectedCount.innerText = rejected;
 }
 
+function setInactive(button) {
+  button.classList.remove("bg-blue-500", "text-white");
+  button.classList.add("bg-white", "text-[#64748b]");
+}
+
+function setActive(button) {
+  button.classList.add("bg-blue-500", "text-white");
+  button.classList.remove("bg-white", "text-[#64748b]");
+}
+
 function activateButton() {
-  allButton.classList.remove("bg-blue-500", "text-white");
-  allButton.classList.add("bg-white", "text-[#64748b]");
-
-  interviewButton.classList.remove("bg-blue-500", "text-white");
-  interviewButton.classList.add("bg-white", "text-[#64748b]");
-
-  rejectedButton.classList.remove("bg-blue-500", "text-white");
-  rejectedButton.classList.add("bg-white", "text-[#64748b]");
+  setInactive(allButton);
+  setInactive(interviewButton);
+  setInactive(rejectedButton);
 
   if (filterType === "all") {
-    allButton.classList.add("bg-blue-500", "text-white");
-    allButton.classList.remove("bg-white", "text-[#64748b]");
+    setActive(allButton);
   }
   else if (filterType === "interview") {
-    interviewButton.classList.add("bg-blue-500", "text-white");
-    interviewButton.classList.remove("bg-white", "text-[#64748b]");
+    setActive(interviewButton);
   }
   else if (filterType === "rejected") {
-    rejectedButton.classList.add("bg-blue-500", "text-white");
-    rejectedButton.classList.remove("bg-white", "text-[#64748b]");
+    setActive(rejectedButton);
   }
 }
 
@@ -70,14 +83,13 @@ function showFiltered() {
   let shown = 0;
 
   for (const card of cards) {
-    let status = "";
-    const statusElement = card.querySelector(".space-y-2 button");
-    
-    if (statusElement) {
-      status = statusElement.innerText.toLowerCase().trim();
-    }
+    const status = getCardStatus(card);
 
-    if (filterType === "all" || status === filterType) {
+    if (filterType === "all") {
+      card.classList.remove("hidden");
+      shown = shown + 1;
+    } 
+    else if (status === filterType) {
       card.classList.remove("hidden");
       shown = shown + 1;
     }
@@ -103,6 +115,7 @@ function showFiltered() {
 
 function changeStatus(card, newStatus) {
   const badge = card.querySelector(".space-y-2 button");
+
   if (!badge) {
     return;
   }
@@ -124,33 +137,35 @@ function changeStatus(card, newStatus) {
   }
 }
 
-allButton.addEventListener("click", function() {
+allButton.addEventListener("click", function () {
   filterType = "all";
   activateButton();
   showFiltered();
 });
 
-interviewButton.addEventListener("click", function() {
+interviewButton.addEventListener("click", function () {
   filterType = "interview";
   activateButton();
   showFiltered();
 });
 
-rejectedButton.addEventListener("click", function() {
+rejectedButton.addEventListener("click", function () {
   filterType = "rejected";
   activateButton();
   showFiltered();
 });
 
-jobsContainer.addEventListener("click", function(e) {
-  const card = e.target.closest(".job-card");
+jobsContainer.addEventListener("click", function (event) {
+  const target = event.target;
+  const card = target.closest(".job-card");
+
   if (!card) {
     return;
   }
 
   let text = "";
-  if (e.target.innerText) {
-    text = e.target.innerText.trim().toLowerCase();
+  if (target.innerText) {
+    text = target.innerText.trim().toLowerCase();
   }
 
   if (text === "interview") {
@@ -163,7 +178,7 @@ jobsContainer.addEventListener("click", function(e) {
     updateCounts();
     showFiltered();
   }
-  else if (e.target.classList.contains("fa-trash-can")) {
+  else if (target.classList.contains("fa-trash-can")) {
     card.remove();
     updateCounts();
     showFiltered();
