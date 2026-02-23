@@ -12,7 +12,7 @@ const interviewButton = document.getElementById("interviewFilterButton");
 const rejectedButton = document.getElementById("rejectedFilterButton");
 
 function getCards() {
-  return Array.from(document.querySelectorAll(".job-card"));
+  return [...document.querySelectorAll(".job-card")];
 }
 
 function updateCounts() {
